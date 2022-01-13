@@ -1,3 +1,3 @@
-const { Contact } = require('./contact')
+const { Superhero } = require('./superhero')
 
-module.exports = { Contact }
+module.exports = { Superhero }
