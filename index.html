@@ -16,7 +16,8 @@
       form.addEventListener('submit', function (e) {
         e.preventDefault()
         const data = new FormData()
-        console.log(this.elements.file.files)
+        data.append('file', this.elements.file.files[0])
+        console.log(data)
       })
     </script>
   </body>

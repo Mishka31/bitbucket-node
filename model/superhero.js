@@ -10,7 +10,7 @@ const superheroSchema = Schema(
     },
     real_name: {
       type: String,
-      required: [true, 'Set real_name for superhero'],
+      required: [false, 'Set real_name for superhero'],
     },
     origin_description: {
       type: String,
@@ -27,23 +27,23 @@ const superheroSchema = Schema(
     imageURL: {
       type: Array,
       required: [false, 'Set superpowers for superhero'],
-      default: [
-        {
-          id: 1,
-          img: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
-        },
-        {
-          id: 2,
-          img: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
-        },
-      ],
+      // default: [
+      //   {
+      //     id: 1,
+      //     img: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
+      //   },
+      //   {
+      //     id: 2,
+      //     img: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
+      //   },
+      // ],
     },
   },
   { versionKey: false, timestamps: true }
 )
 const schema = Joi.object({
-  nickname: Joi.string().min(1).max(30).required(),
-  real_name: Joi.string().min(1).max(30).required(),
+  nickname: Joi.string().min(1).max(30),
+  real_name: Joi.string().min(1).max(30),
   origin_description: Joi.string().min(3),
   superpowers: Joi.string().min(1).max(100),
   catch_phrase: Joi.string().min(1).max(100),
