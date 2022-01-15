@@ -19,7 +19,12 @@ router.post(
 
 // router.get('/:contactId', asyncTryCatch(ctrl.getById))
 
-// router.put('/:contactId', validation(schema), asyncTryCatch(ctrl.updateById))
+router.put(
+  '/:id',
+  validation(schema),
+  uploadMiddleware.single('file'),
+  asyncTryCatch(ctrl.updateById)
+)
 
 // router.delete('/:contactId', asyncTryCatch(ctrl.deleteById))
 
