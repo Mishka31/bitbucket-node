@@ -11,6 +11,29 @@
       <input name="file" type="file" multiple />
       <button type="submit">Upload</button>
     </form>
+    <div id="imagesContainer"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.js"></script>
+
+    <script>
+      const imgContainer = document.getElementById('imagesContainer')
+      const imagesRequest = axios.get('http://localhost:8080/api/superheros/')
+
+      imagesRequest
+        .then(({ data }) => {
+          const imgElements = data.data.superheros
+            .map(
+              (item) => `<div>
+        <h2>${item.nickname}</h2>
+        <img src="http://localhost:8080/${item.imageUrl}" width=220>
+        </div>`
+            )
+            .join()
+          imgContainer.insertAdjacentHTML('beforeEnd', imgElements)
+        })
+        .catch((error) => console.log(error.message))
+    </script>
+
     <script>
       const form = document.getElementById('form')
       form.addEventListener('submit', function (e) {

@@ -1,6 +1,5 @@
 const { Schema, model } = require('mongoose')
 const Joi = require('joi')
-const { string, array } = require('joi')
 
 const superheroSchema = Schema(
   {
@@ -24,19 +23,9 @@ const superheroSchema = Schema(
       type: String,
       required: [false, 'Set superpowers for superhero'],
     },
-    imageURL: {
-      type: Array,
+    imageUrl: {
+      type: String,
       required: [false, 'Set superpowers for superhero'],
-      // default: [
-      //   {
-      //     id: 1,
-      //     img: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
-      //   },
-      //   {
-      //     id: 2,
-      //     img: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
-      //   },
-      // ],
     },
   },
   { versionKey: false, timestamps: true }
@@ -47,7 +36,7 @@ const schema = Joi.object({
   origin_description: Joi.string().min(3),
   superpowers: Joi.string().min(1).max(100),
   catch_phrase: Joi.string().min(1).max(100),
-  imageURL: Joi.array(),
+  imageUrl: Joi.string(),
 })
 
 const Superhero = model('superheros', superheroSchema)
