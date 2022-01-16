@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form id="form" action="" enctype="multipart/form-data">
+      <input name="file" type="file" multiple />
+      <!-- <input name="name" type="text" /> -->
+      <button type="submit">Upload</button>
+    </form>
+    <div id="imagesContainer"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.js"></script>
+    <script>
+      const form = document.getElementById('form')
+      form.addEventListener('submit', function (e) {
+        e.preventDefault()
+        const file = this.elements.file.files[0]
+
+        const data = new FormData()
+        data.append('file', file)
+        data.append('nickname', file.name)
+
+        axios
+          .post('http://localhost:8080/api/superheros/', data, {
+            headers: {
+              'content-type': 'multipart/form-data', // do not forget this
+            },
+          })
+          .then((response) => {
+            console.log(response)
+          })
+          .catch((error) => {
+            console.log(error.message)
+          })
+      })
+    </script>
+    <script>
+      const imgContainer = document.getElementById('imagesContainer')
+      const imagesRequest = axios.get('http://localhost:8080/api/superheros/')
+
+      imagesRequest
+        .then(({ data }) => {
+          const imgElements = data.data.superheros
+            .map(
+              (item) => `<div>
+        <h2>${item.nickname}</h2>
+        <img src="http://localhost:8080/${item.imageUrl}" width=180>
+        </div>`
+            )
+            .join()
+          imgContainer.insertAdjacentHTML('beforeEnd', imgElements)
+        })
+        .catch((error) => console.log(error.message))
+    </script>
+  </body>
+</html>
