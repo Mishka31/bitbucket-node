@@ -9,7 +9,6 @@ const addSuperhero = async (req, res) => {
   const resultDir = path.join(pathAvatars, originalname)
   await fs.rename(tempPath, resultDir)
   const imageUrl = path.join('/images', originalname)
-
   const newHero = { ...req.body, imageUrl }
   const result = await Superhero.create(newHero)
   res.status(201).json({ status: 'succes', code: 201, data: { result } })

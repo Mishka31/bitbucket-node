@@ -5,7 +5,7 @@ const superheroSchema = Schema(
   {
     nickname: {
       type: String,
-      required: [true, 'Set name for superhero'],
+      required: [false, 'Set name for superhero'],
     },
     real_name: {
       type: String,
