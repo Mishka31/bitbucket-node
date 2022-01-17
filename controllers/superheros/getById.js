@@ -1,11 +1,11 @@
 const { NotFound } = require('http-errors')
-const { Contact } = require('../../model')
+const { Superhero } = require('../../model')
 
 const getById = async (req, res) => {
-  const { contactId } = req.params
-  const result = await Contact.findById(contactId)
+  const { id } = req.params
+  const result = await Superhero.findById(id)
   if (!result) {
-    throw new NotFound(`Not found id = ${contactId}`)
+    throw new NotFound(`Not found id = ${id}`)
   }
   res.json({ message: 'template message', code: 200, data: { result } })
 }

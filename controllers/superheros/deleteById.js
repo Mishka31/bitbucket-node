@@ -1,11 +1,11 @@
 const { NotFound } = require('http-errors')
-const { Contact } = require('../../model')
+const { Superhero } = require('../../model')
 
 const deleteById = async (req, res) => {
-  const { contactId } = req.params
-  const result = await Contact.findByIdAndRemove(contactId)
+  const { id } = req.params
+  const result = await Superhero.findByIdAndRemove(id)
   if (!result) {
-    throw new NotFound(`Not found id = ${contactId}`)
+    throw new NotFound(`Not found id = ${id}`)
   }
   res.json({ status: 'succes', code: 200, message: 'contact deleted' })
 }

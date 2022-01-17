@@ -17,7 +17,7 @@ router.post(
   asyncTryCatch(ctrl.addSuperhero)
 )
 
-// router.get('/:contactId', asyncTryCatch(ctrl.getById))
+router.get('/:id', asyncTryCatch(ctrl.getById))
 
 router.put(
   '/:id',
@@ -26,6 +26,6 @@ router.put(
   asyncTryCatch(ctrl.updateById)
 )
 
-// router.delete('/:contactId', asyncTryCatch(ctrl.deleteById))
+router.delete('/:id', asyncTryCatch(ctrl.deleteById))
 
 module.exports = router
